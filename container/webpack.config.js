@@ -86,15 +86,9 @@ const get_rules = (dev) => [
 const get_plugins = () => [
   new module_federation({
     name: 'container',
-    filename: 'remote_entry.js',
+    filename: 'remoteEntry.js',
     remotes: {
-      app1: 'app1@http://localhost:8801/remote_entry.js',
-    },
-    exposes: {},
-    shared: {
-      vue: {
-        singleton: true,
-      },
+      app1: 'app1@http://localhost:8801/remoteEntry.js',
     },
   }),
   new webpack.DefinePlugin({

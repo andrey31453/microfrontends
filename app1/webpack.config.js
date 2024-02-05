@@ -85,18 +85,6 @@ const get_rules = (dev) => [
 //
 
 const get_plugins = () => [
-  // new module_federation({
-  //   name: 'app1',
-  //   filename: 'remote_entry.js',
-  //   exposes: {
-  //     './app1init': './src/bootstrap.ts',
-  //   },
-  //   shared: {
-  //     vue: {
-  //       singleton: true,
-  //     },
-  //   },
-  // }),
   new webpack.DefinePlugin({
     __VUE_OPTIONS_API__: false,
     __VUE_PROD_DEVTOOLS__: false,
@@ -113,6 +101,13 @@ const get_plugins = () => [
         to: dist + 'assets',
       },
     ],
+  }),
+  new module_federation({
+    name: 'app1',
+    filename: 'remoteEntry.js',
+    exposes: {
+      './app1init': './src/app/bootstrap.ts',
+    },
   }),
 ]
 
@@ -158,7 +153,10 @@ module.exports = ({ dev }) => {
 
     // entry
     entry: {
-      main: src + 'app/main.ts',
+      // filename: 'app1.js',
+      // import: src + 'app/bootstrap.ts',
+      // uniqueName: 'app1',
+      main: src + 'app/bootstrap.ts',
     },
 
     // output
