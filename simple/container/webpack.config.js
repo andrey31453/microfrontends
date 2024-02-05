@@ -4,7 +4,6 @@ const { ModuleFederationPlugin: module_federation } =
 
 const dist = __dirname + '/dist/'
 const src = __dirname + '/src/'
-const template = __dirname + '/src/template/'
 
 const get_rules = (dev) => [
   {
