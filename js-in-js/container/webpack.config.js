@@ -25,8 +25,7 @@ const get_plugins = () => [
     name: 'container',
     filename: 'remoteEntry.js',
     remotes: {
-      app1: 'app1@http://localhost:8801/remoteEntry.js',
-      app2: 'app2@http://localhost:8802/remoteEntry.js',
+      app1: 'app1@http://localhost:8811/remoteEntry.js',
     },
   }),
   new html_webpack({
@@ -39,7 +38,7 @@ const get_serve = (dev) => {
 
   return {
     hot: true,
-    port: 8800,
+    port: 8810,
     allowedHosts: 'all',
   }
 }

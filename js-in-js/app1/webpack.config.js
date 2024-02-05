@@ -39,7 +39,7 @@ const get_serve = (dev) => {
 
   return {
     hot: true,
-    port: 8801,
+    port: 8811,
     allowedHosts: 'all',
   }
 }

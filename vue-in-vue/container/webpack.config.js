@@ -9,18 +9,12 @@ const dist = __dirname + '/dist/'
 const src = __dirname + '/src/'
 const template = __dirname + '/src/template/'
 
-//
-// rules
-//
-
 const get_rules = (dev) => [
-  // vue
   {
     test: /\.vue$/,
     loader: 'vue-loader',
   },
 
-  // ts
   {
     test: /\.ts$/,
     loader: 'ts-loader',
@@ -43,7 +37,6 @@ const get_rules = (dev) => [
     ],
   },
 
-  // scss
   {
     test: /\.(scss|css|sass)$/i,
     use: [
@@ -60,28 +53,22 @@ const get_rules = (dev) => [
       {
         loader: 'sass-loader',
         options: {
-          sourceMap: dev ? true : false,
+          sourceMap: dev,
         },
       },
     ],
   },
 
-  // files
   {
     test: /\.(png|jpg|webp|ico|.json)$/i,
     type: 'asset/resource',
   },
 
-  // svg
   {
     test: /\.svg$/,
     loader: 'svg-inline-loader',
   },
 ]
-
-//
-// plugins
-//
 
 const get_plugins = () => [
   new module_federation({
@@ -110,17 +97,9 @@ const get_plugins = () => [
   }),
 ]
 
-//
-// alias
-//
-
 const get_alias = () => ({
   '@': src,
 })
-
-//
-// serve
-//
 
 const get_serve = (dev) => {
   if (!dev) return undefined
@@ -132,30 +111,18 @@ const get_serve = (dev) => {
   }
 }
 
-//
-// exports
-//
-
 module.exports = ({ dev }) => {
   return {
-    // mode
     mode: dev ? 'development' : 'production',
-
-    // target
     target: ['browserslist'],
-
-    // devtool
     devtool: dev ? 'eval-source-map' : undefined,
-
-    // devServer
     devServer: get_serve(dev),
+    plugins: get_plugins(),
 
-    // entry
     entry: {
       main: src + 'app/bootstrap.ts',
     },
 
-    // output
     output: {
       filename: '[name].js',
       clean: true,
@@ -163,18 +130,13 @@ module.exports = ({ dev }) => {
       assetModuleFilename: '[name][ext]',
     },
 
-    // resolve
     resolve: {
       extensions: ['.vue', '.ts', '.js'],
       alias: get_alias(),
     },
 
-    // module
     module: {
       rules: get_rules(dev),
     },
-
-    //plugins
-    plugins: get_plugins(),
   }
 }
