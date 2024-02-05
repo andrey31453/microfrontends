@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  app1js:
+    env_file: ./.env
+
+    build:
+      context: ./app1
+      args:
+        workdir: $app1_workdir
+    ports:
+      - $app1_port:$app1_port
+    volumes:
+      - ./app1:$app1_workdir
+      - $app1_workdir/node_modules
+
+  containerjs:
+    env_file: ./.env
+
+    build:
+      context: ./container
+      args:
+        workdir: $container_workdir
+    ports:
+      - $container_port:$container_port
+    volumes:
+      - ./container:$container_workdir
+      - $container_workdir/node_modules
+
+  nginx:
+    depends_on:
+      - app1js
+      - containerjs
+    env_file: ./.env
+
+    image: nginx:1.25.3-alpine
+    restart: always
+    ports:
+      - $web_port:80
+    volumes:
+      - ./web/nginx.conf:/etc/nginx/conf.d/default.conf
