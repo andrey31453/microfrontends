@@ -23,4 +23,4 @@
 7. npm run dev
 8. http://localhost:8810/
 
-**expected:** TypeError: fn is not a function
+**expected:** `TypeError: fn is not a function`
