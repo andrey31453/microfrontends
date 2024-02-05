@@ -10,6 +10,7 @@
 8. http://localhost:8800/
 
 **expected:** `...app1) is not a function`
+\n
 **expected:** `...TypeError: Cannot read properties of undefined (reading 'call')`
 
 ## js-in-js
