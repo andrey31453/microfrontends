@@ -25,12 +25,13 @@ module.exports = {
     ],
   },
   plugins: [
-    // To learn more about the usage of this plugin, please visit https://webpack.js.org/plugins/module-federation-plugin/
     new ModuleFederationPlugin({
       name: 'app1',
       filename: 'remoteEntry.js',
       exposes: {
-        './App': './src/App',
+        './App11': './src/App11',
+        './App12': './src/App12',
+        './init': './src/index',
       },
       shared: {
         'react': { singleton: true },

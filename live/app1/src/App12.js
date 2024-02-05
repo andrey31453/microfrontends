@@ -1,18 +1,16 @@
 import React from 'react'
 
-const App = () => {
+export default () => {
   return (
     <div
       style={{
         margin: '10px',
         padding: '10px',
         textAlign: 'center',
-        backgroundColor: 'cyan',
+        backgroundColor: 'red',
       }}
     >
-      <h1>App 1</h1>
+      <h1>App 12</h1>
     </div>
   )
 }
-
-export default App

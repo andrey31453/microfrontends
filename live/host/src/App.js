@@ -1,5 +1,8 @@
 import React, { Suspense } from 'react'
-const App1 = React.lazy(() => import('app1/App'))
+import init from 'app1/init'
+
+const App11 = React.lazy(() => import('app1/App11'))
+const App12 = React.lazy(() => import('app1/App12'))
 
 const App = () => {
   return (
@@ -18,8 +21,13 @@ const App = () => {
       <hr />
 
       <Suspense fallback={'loading...'}>
-        <App1 />
+        <App11>hgdfjkghkjd</App11>
+        <App12 />
       </Suspense>
+
+      <hr />
+
+      <div id='app1'></div>
     </div>
   )
 }
