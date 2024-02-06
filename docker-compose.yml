@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  build_microfrontends:
+    env_file: ./.env
+
+    build:
+      context: ./app1
+      args:
+        workdir: $app1_workdir
+    ports:
+      - $app1_port:$app1_port
+    volumes:
+      - ./app1:$app1_workdir
+      - $app1_workdir/node_modules
