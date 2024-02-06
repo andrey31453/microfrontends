@@ -4,6 +4,7 @@ const { ModuleFederationPlugin: module_federation } =
 
 const dist = __dirname + '/dist/'
 const src = __dirname + '/src/'
+const template = __dirname + '/src/template/'
 
 const get_rules = (dev) => [
   {
@@ -24,8 +25,8 @@ const get_plugins = () => [
   new module_federation({
     name: 'container',
     filename: 'remoteEntry.js',
-    remotes: {
-      app1: 'app1@http://localhost:8811/remoteEntry.js',
+    exposes: {
+      './app1': src + 'bootstrap.js',
     },
   }),
   new html_webpack({
@@ -38,8 +39,8 @@ const get_serve = (dev) => {
 
   return {
     hot: true,
-    port: 8810,
-    allowedHosts: 'all',
+    static: dist,
+    port: 8811,
   }
 }
 
@@ -63,6 +64,7 @@ module.exports = ({ dev }) => {
       filename: '[name].js',
       clean: true,
       path: dist,
+      publicPath: 'auto',
       assetModuleFilename: '[name][ext]',
     },
 

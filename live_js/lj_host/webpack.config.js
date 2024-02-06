@@ -8,7 +8,7 @@ module.exports = {
   mode: 'development',
   devServer: {
     static: path.join(__dirname, 'dist'),
-    port: 4000,
+    port: 4010,
   },
   output: {
     publicPath: 'auto',
@@ -29,7 +29,7 @@ module.exports = {
     new ModuleFederationPlugin({
       name: 'host',
       remotes: {
-        app1: 'app1@[app1Url]/remoteEntry.js',
+        app1: 'app1@http://localhost:4011/remoteEntry.js',
       },
       shared: {
         'react': { singleton: true },
